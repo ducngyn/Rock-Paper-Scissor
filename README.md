@@ -1,3 +1,2 @@
-# git_test
-Das ist ein Repo    
-Hallo!
+# Rock Paper Scissor
+Just a small game to play in the console.
