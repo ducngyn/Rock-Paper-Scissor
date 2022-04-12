@@ -4,30 +4,27 @@ let computerscore = 0;
 
 function computerPlay() {
     const computerChoices = ['rock', 'paper', 'scissor'];
-    const random = Math.floor(Math.random() * computerChoices.length)
-    return computerChoices[random]
+    const random = Math.floor(Math.random() * computerChoices.length);
+
+    return computerChoices[random];
 }
 
 function playRound(computerSelection, playerSelection) {
-
     const playerSelectionLow = playerSelection.toString().toLowerCase();
-
+    const playerWins =
+    computerSelection === 'rock' && playerSelectionLow === 'paper' ||
+    computerSelection === 'paper' && playerSelectionLow === 'scissor' ||
+    computerSelection === 'scissor' && playerSelectionLow === 'rock';
+    const computerWins =
+    computerSelection === 'rock' && playerSelectionLow === 'scissor' ||
+    computerSelection === 'paper' && playerSelectionLow === 'rock' ||
+    computerSelection === 'scissor' && playerSelectionLow === 'paper';
+    
     if (!['rock', 'paper', 'scissor'].includes(playerSelectionLow)) {
         console.log('invalid value');
         return;
     }
-
-    const playerWins =
-        computerSelection === 'rock' && playerSelectionLow === 'paper' ||
-        computerSelection === 'paper' && playerSelectionLow === 'scissor' ||
-        computerSelection === 'scissor' && playerSelectionLow === 'rock';
-
-    const computerWins =
-        computerSelection === 'rock' && playerSelectionLow === 'scissor' ||
-        computerSelection === 'paper' && playerSelectionLow === 'rock' ||
-        computerSelection === 'scissor' && playerSelectionLow === 'paper';
-
-
+    
     if (computerSelection === playerSelectionLow) roundWinner = 'tie';
 
     if (computerWins) {
@@ -40,8 +37,7 @@ function playRound(computerSelection, playerSelection) {
         playerScore++;
     }
 
-    outputResult(roundWinner, computerSelection, playerSelectionLow)
-
+    outputResult(roundWinner, computerSelection, playerSelectionLow);
 }
 
 function outputResult(winner, comSelection, playerSelection) {
@@ -56,12 +52,10 @@ function outputResult(winner, comSelection, playerSelection) {
     if (winner === 'tie') {
         console.log(`You both tied`)
     }
-
 }
 
 
 function game() {
-
     for (let i = 0; i < 5; i++) {
         const playerSelection = window.prompt('please input a value');
         const computerselection = computerPlay();
@@ -71,7 +65,6 @@ function game() {
     if (playerScore > computerscore) console.log(`You win with ${playerScore} point(s), while the computer has ${computerscore} point(s)`)
     if (playerScore < computerscore) console.log(`You lose with ${playerScore} point(s), while the computer has ${computerscore} point(s)`)
     if (playerScore > computerscore) console.log(`You tie with ${playerScore} point(s)`)
-    
 }
 
 game();
