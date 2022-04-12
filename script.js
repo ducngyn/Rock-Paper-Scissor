@@ -9,10 +9,10 @@ function computerPlay() {
 }
 
 function playRound(computerSelection, playerSelection) {
-    
+
     const playerSelectionLow = playerSelection.toString().toLowerCase();
 
-    if (playerSelectionLow !== ('rock' || 'paper' || 'scissor')) {
+    if (!['rock', 'paper', 'scissor'].includes(playerSelectionLow)) {
         console.log('invalid value');
         return;
     }
@@ -54,15 +54,24 @@ function outputResult(winner, comSelection, playerSelection) {
     }
 
     if (winner === 'tie') {
-        console.log(`You both tied`)    }
+        console.log(`You both tied`)
+    }
 
 }
 
 
 function game() {
-    const playerSelection = window.prompt('please input a value');
-    const computerselection = computerPlay();
-    playRound(computerselection, playerSelection)
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = window.prompt('please input a value');
+        const computerselection = computerPlay();
+        playRound(computerselection, playerSelection)
+    }
+
+    if (playerScore > computerscore) console.log(`You win with ${playerScore} point(s), while the computer has ${computerscore} point(s)`)
+    if (playerScore < computerscore) console.log(`You lose with ${playerScore} point(s), while the computer has ${computerscore} point(s)`)
+    if (playerScore > computerscore) console.log(`You tie with ${playerScore} point(s)`)
+    
 }
 
 game();
